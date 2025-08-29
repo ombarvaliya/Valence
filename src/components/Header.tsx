@@ -11,7 +11,10 @@ export default function Header() {
         <nav className="flex items-center space-x-6">
           <Link href="/map" className="hover:text-green-300 transition-colors hidden sm:block">Map</Link>
           <Link href="/dashboard" className="hover:text-green-300 transition-colors hidden sm:block">Dashboard</Link>
-          <Link href="/add-asset" className="hover:text-green-300 transition-colors hidden sm:block">Add Asset</Link>
+          {/* This link now points to the simple form */}
+          <Link href="/add-asset" className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
+            Add Asset
+          </Link>
           <UserButton />
         </nav>
       </div>
