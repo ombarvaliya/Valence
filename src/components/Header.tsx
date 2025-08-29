@@ -6,7 +6,7 @@ export default function Header() {
     <header className="bg-gray-900 text-white shadow-md z-20 relative">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <Link href="/map" className="text-2xl font-bold text-green-400 hover:text-green-300 transition-colors">
-          Valence
+          <img src="/public/ligo-withoutBg.png"></img>
         </Link>
         <nav className="flex items-center space-x-6">
           <Link href="/map" className="hover:text-green-300 transition-colors hidden sm:block">Map</Link>
