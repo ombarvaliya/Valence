@@ -3,9 +3,9 @@ import Link from 'next/link';
 export default function LandingPage() {
   return (
     <div className="min-h-screen flex flex-col">
-      <div className="pt-2 bg-[url('/bgImg.png')] bg-cover bg-center text-white min-h-screen flex flex-col">
+      <div className="p-2 bg-[url('/bgImg.png')] bg-cover bg-center text-white min-h-screen flex flex-col">
         <header className="max-w-7xl bg-white/20 border rounded-xl border-white/30 container mx-auto px-6 py-4 flex justify-between items-center">
-          <img src="/logo-withoutBg.png" className="w-28"></img>
+          <img src="/logo-withoutBg.png" className="h-8"></img>
           <nav className="space-x-4">
             <Link href="/login" className="text-gray-300 hover:text-white transition-colors">
               Login
