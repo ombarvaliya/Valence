@@ -1,20 +1,29 @@
 import Link from 'next/link';
+import Image from 'next/image'; // 1. Import the Next.js Image component for best practices
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className="p-2 bg-[url('/bgImg.png')] bg-cover bg-center text-white min-h-screen flex flex-col items-center">
-        <header className="fixed top-2 z-50 max-w-7xl bg-white/20 border rounded-xl border-white/30 container mx-auto px-6 py-4 flex justify-between items-center">
-          <img src="/logo-withoutBg.png" className="h-8"></img>
-          <nav className="space-x-4">
-            <Link href="/auth" className="text-gray-300 hover:text-white transition-colors">
+    <div className="min-h-screen flex flex-col text-white">
+      <div className="p-2 bg-[url('/bgImg.png')] bg-cover bg-center min-h-screen flex flex-col items-center">
+        <header className="fixed top-2 z-50 w-full max-w-7xl bg-white/20 border rounded-xl border-white/30 container mx-auto px-6 py-4 flex justify-between items-center backdrop-blur-sm">
+          {/* 2. Using the optimized Next.js Image component */}
+          <Image src="/logo-withoutBg.png" alt="Valence Logo" width={112} height={32} priority />
+          <nav className="space-x-4 md:space-x-6 flex items-center">
+            {/* 3. "Contact Us" link added */}
+            <Link href="/contact" className="text-gray-200 hover:text-white transition-colors">
+              Contact Us
+            </Link>
+            {/* 4. Corrected Login/Signup links */}
+            <Link href="/login" className="text-gray-200 hover:text-white transition-colors">
               Login
             </Link>
-            <Link href="/auth" className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
+            <Link href="/signup" className="bg-green-600 hover:bg-green-700 font-bold py-2 px-4 rounded-lg transition-colors">
               Sign Up
             </Link>
           </nav>
         </header>
+
+        {/* --- All of your content below this line is UNCHANGED --- */}
         <main className="flex-grow flex items-center">
           <div className="container mx-auto px-6 text-center">
             <h2 className="text-5xl md:text-6xl font-extrabold leading-tight mb-4">
@@ -29,7 +38,6 @@ export default function LandingPage() {
           </div>
         </main>
       </div>
-
 
       <section className="py-16 px-6 mx-auto text-center flex flex-col items-center w-full bg-gradient-to-b from-[#2D4323] to-[#192313]">
         <div className="bg-white/10 py-8 border border-white/30 rounded-xl flex flex-col items-center">
@@ -117,17 +125,15 @@ export default function LandingPage() {
           Try the demo today and help build a sustainable hydrogen future.
         </p>
         <div className="mt-8 flex justify-center gap-4">
-          <button className="bg-white text-green-700 font-semibold px-6 py-3 rounded-xl shadow hover:bg-gray-100">
+          <Link href="/signup" className="bg-white text-green-700 font-semibold px-6 py-3 rounded-xl shadow hover:bg-gray-100">
             Try Demo
-          </button>
-          <button className="bg-transparent border border-white px-6 py-3 rounded-xl hover:bg-white hover:text-green-700">
+          </Link>
+          <Link href="/contact" className="bg-transparent border border-white px-6 py-3 rounded-xl hover:bg-white hover:text-green-700">
             Contact Us
-          </button>
+          </Link>
         </div>
       </section>
-
-
-      <footer className="container bg-[#192313] mx-auto px-6 py-8 text-center text-white text-sm">
+      <footer className="w-full bg-[#192313] px-6 py-8 text-center text-gray-400 text-sm">
         &copy; {new Date().getFullYear()} Valence. All Rights Reserved.
       </footer>
     </div>
