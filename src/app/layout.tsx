@@ -16,7 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    // --- THIS IS THE FIX ---
+    // The `suppressHydrationWarning` prop tells React to ignore
+    // minor differences in attributes, like styles injected by extensions.
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <AppSessionProvider>
           {children}
