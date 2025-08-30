@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../auth/[...nextauth]/route';
 import dbConnect from '@/lib/mongodb';
 import Asset from '@/models/Asset';
+import { getUserAssets } from '@/lib/data';
 
 // --- THIS IS THE CRUCIAL FIX ---
 // This line tells Next.js to always run this route on the server dynamically
@@ -11,20 +12,13 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
   const session = await getServerSession(authOptions);
-
   if (!session?.user?.id) {
-    return NextResponse.json({ success: false, message: 'Unauthorized: No session found' }, { status: 401 });
+    return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
   }
-
-  const userId = session.user.id;
-
   try {
-    await dbConnect();
-    const assets = await Asset.find({ userId: userId });
-
-    return NextResponse.json({ success: true, data: assets }, { status: 200 });
+    const assets = await getUserAssets(session.user.id);
+    return NextResponse.json({ success: true, data: assets });
   } catch (error) {
-    console.error("[API/ASSETS/GET] Server Error:", error);
     return NextResponse.json({ success: false, message: 'Server Error' }, { status: 500 });
   }
 }
