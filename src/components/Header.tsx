@@ -13,6 +13,7 @@ export default function Header() {
             <Link href="/map" className="hover:text-green-300 transition-colors hidden sm:block">Map</Link>
             <Link href="/dashboard" className="hover:text-green-300 transition-colors hidden sm:block">Dashboard</Link>
             <Link href="/add-asset" className="hover:text-green-300 transition-colors hidden sm:block">Add Asset</Link>
+            <div className="h-10 border-l border-white/30"></div>
             <UserButton />
           </nav>
         </div>

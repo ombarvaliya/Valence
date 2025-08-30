@@ -79,7 +79,7 @@ export default function Chatbot() {
       <div className="fixed bottom-6 right-6 z-50">
         <button 
           onClick={() => setIsOpen(true)} 
-          className="bg-green-600 text-white rounded-full h-16 w-16 flex items-center justify-center shadow-lg hover:bg-green-700 transition-transform transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-green-300"
+          className="bg-[url('/bgImg.png')] text-white rounded-full h-16 w-16 flex items-center justify-center shadow-lg hover:bg-green-700 transition-transform transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-green-300"
           aria-label="Open help chatbot"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -88,7 +88,7 @@ export default function Chatbot() {
 
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-gray-800/10 z-50 flex items-center justify-center p-4 backdrop-blur-xs"
         >
           <div 
             className="w-full max-w-2xl h-[80vh] max-h-[700px] bg-white rounded-2xl shadow-2xl flex flex-col"
@@ -107,9 +107,9 @@ export default function Chatbot() {
                     {messages.map((msg, index) => (
                         <div key={index} className={`flex gap-3 ${msg.isUser ? 'justify-end' : 'justify-start'}`}>
                             {!msg.isUser && 
-                                <div className="w-8 h-8 rounded-full bg-green-600 flex-shrink-0 flex items-center justify-center font-bold text-white">V</div>
+                                <div className="w-8 h-8 rounded-full bg-[#406D32] flex-shrink-0 flex items-center justify-center font-bold text-white">V</div>
                             }
-                            <div className={`max-w-md px-4 py-3 rounded-2xl ${msg.isUser ? 'bg-green-600 text-white rounded-br-none' : 'bg-gray-200 text-gray-800 rounded-bl-none'}`}>
+                            <div className={`max-w-md px-4 py-3 rounded-2xl ${msg.isUser ? 'bg-[#406D32] text-white rounded-br-none' : 'bg-gray-200 text-gray-800 rounded-bl-none'}`}>
                                 <p className="text-sm whitespace-pre-wrap">{msg.text}</p>
                             </div>
                         </div>
@@ -139,16 +139,16 @@ export default function Chatbot() {
                 )}
             </div>
             
-            <form onSubmit={handleSubmit} className="p-4 border-t bg-white rounded-b-2xl flex-shrink-0">
+            <form onSubmit={handleSubmit} className="p-4 border-t bg-gradient-to-tl from-gray-700 to-gray-400 rounded-b-2xl flex-shrink-0">
               <div className="flex items-center space-x-2">
                 <input
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask a question about Valence or anything else..."
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 focus:ring-green-500"
                 />
-                <button type="submit" disabled={isLoading || !input.trim()} className="bg-green-600 text-white p-3 rounded-full hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors">
+                <button type="submit" disabled={isLoading || !input.trim()} className="bg-[#406D32] text-white p-3 rounded-full hover:bg-[#406D32]/60 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg>
                 </button>
               </div>

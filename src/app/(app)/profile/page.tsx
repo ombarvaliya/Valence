@@ -25,56 +25,56 @@ export default async function ProfilePage() {
     .slice(0, 5); // Get the 5 most recent assets
 
   return (
-    <div className="bg-gray-100 min-h-full p-4 sm:p-6 md:p-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="bg-gradient-to-tl from-gray-700 to-gray-400 min-h-full p-4 ">
+      <div className="max-w-7xl mx-auto p-8 shadow-lg border border-0 rounded-xl bg-gradient-to-br from-gray-800 to-gray-700">
         <header className="mb-10">
-          <div className="bg-white p-6 rounded-xl shadow-md flex items-center space-x-6">
-            <div className="h-20 w-20 bg-green-500 rounded-full flex items-center justify-center text-white text-4xl font-bold">
+          <div className="bg-white/20 border border-white/30 p-6 rounded-xl shadow-md flex items-center space-x-6">
+            <div className="h-20 w-20 bg-[#406D32] rounded-full flex items-center justify-center text-white text-4xl font-bold">
               {session.user.name?.charAt(0).toUpperCase()}
             </div>
             <div>
-              <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">{session.user.name}</h1>
-              <p className="text-lg text-gray-600">{session.user.email}</p>
+              <h1 className="text-4xl font-extrabold text-white tracking-tight">{session.user.name}</h1>
+              <p className="text-lg text-white/80">{session.user.email}</p>
             </div>
           </div>
         </header>
 
         <main>
           <section>
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Your Asset Portfolio</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">Your Asset Portfolio</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-indigo-100 p-6 rounded-xl shadow-md border border-indigo-200">
-                <h3 className="text-xl font-bold text-indigo-800">Total Assets</h3>
-                <p className="text-5xl font-extrabold text-indigo-600 mt-2">{totalAssets}</p>
+              <div className="bg-indigo-100 p-6 rounded-xl shadow-md border border-white/30 flex flex-col items-center">
+                <h3 className="text-xl font-bold text-gray-800">Total Assets</h3>
+                <p className="text-5xl font-extrabold text-gray-600 mt-2">{totalAssets}</p>
               </div>
-              <div className="bg-green-100 p-6 rounded-xl shadow-md border border-green-200">
-                <h3 className="text-xl font-bold text-green-800">Renewable</h3>
-                <p className="text-5xl font-extrabold text-green-600 mt-2">{assetCounts.Renewable}</p>
+              <div className="bg-green-100 p-6 rounded-xl shadow-md border border-white/30 flex flex-col items-center">
+                <h3 className="text-xl font-bold text-gray-800">Renewable</h3>
+                <p className="text-5xl font-extrabold text-gray-600 mt-2">{assetCounts.Renewable}</p>
               </div>
-              <div className="bg-sky-100 p-6 rounded-xl shadow-md border border-sky-200">
-                <h3 className="text-xl font-bold text-sky-800">Hydrogen</h3>
-                <p className="text-5xl font-extrabold text-sky-600 mt-2">{assetCounts.Hydrogen}</p>
+              <div className="bg-sky-100 p-6 rounded-xl shadow-md border border-white/30 flex flex-col items-center">
+                <h3 className="text-xl font-bold text-gray-800">Hydrogen</h3>
+                <p className="text-5xl font-extrabold text-gray-600 mt-2">{assetCounts.Hydrogen}</p>
               </div>
-              <div className="bg-amber-100 p-6 rounded-xl shadow-md border border-amber-200">
-                <h3 className="text-xl font-bold text-amber-800">Demand</h3>
-                <p className="text-5xl font-extrabold text-amber-600 mt-2">{assetCounts.Demand}</p>
+              <div className="bg-amber-100 p-6 rounded-xl shadow-md border border-white/30 flex flex-col items-center">
+                <h3 className="text-xl font-bold text-gray-800">Demand</h3>
+                <p className="text-5xl font-extrabold text-gray-600 mt-2">{assetCounts.Demand}</p>
 
               </div>
             </div>
           </section>
 
           <section className="mt-12">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Recent Activity</h2>
-            <div className="bg-white p-6 rounded-xl shadow-md">
+            <h2 className="text-2xl font-bold text-white mb-4">Recent Activity</h2>
+            <div className="bg-white/20 border border-white/30 p-6 rounded-xl shadow-md">
               {recentAssets.length > 0 ? (
                 <ul className="divide-y divide-gray-200">
                   {recentAssets.map(asset => (
                     <li key={String(asset._id)} className="py-4 flex justify-between items-center">
                       <div>
-                        <p className="text-lg font-semibold text-gray-900">{asset.name}</p>
-                        <p className="text-sm text-gray-500">{asset.assetType} - Added on {new Date().toLocaleDateString()}</p>
+                        <p className="text-lg font-semibold text-white">{asset.name}</p>
+                        <p className="text-sm text-gray-400">{asset.assetType} - Added on {new Date().toLocaleDateString()}</p>
                       </div>
-                      <Link href={`/map?assetId=${asset._id}`} className="text-green-600 hover:text-green-800 font-semibold">
+                      <Link href={`/map?assetId=${asset._id}`} className="text-green-900/60 hover:text-green-800 font-semibold">
                         View on Map →
                       </Link>
                     </li>
