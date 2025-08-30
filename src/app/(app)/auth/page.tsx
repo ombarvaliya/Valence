@@ -97,16 +97,16 @@ function AuthComponent() {
             </div>
             <form onSubmit={handleSignupSubmit} className="space-y-4">
               <div>
-                <label htmlFor="signupName" className="block text-sm font-medium text-white/80">Full Name</label>
-                <input type="text" id="signupName" value={signupName} onChange={(e) => setSignupName(e.target.value)} required className="mt-1 block w-full px-3 py-2 bg-white/10 text-white border border-white/20 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"/>
+                <label htmlFor="signupName" className="block text-sm font-medium text-white/80">Name</label>
+                <input type="text" id="signupName" value={signupName} onChange={(e) => setSignupName(e.target.value)} required className="mt-1 block w-full px-3 py-2 bg-white/10 text-white border border-white/20 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500" placeholder="Virat Sharma"/>
               </div>
               <div>
                 <label htmlFor="signupEmail" className="block text-sm font-medium text-white/80">Email</label>
-                <input type="email" id="signupEmail" value={signupEmail} onChange={(e) => setSignupEmail(e.target.value)} required className="mt-1 block w-full px-3 py-2 bg-white/10 text-white border border-white/20 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"/>
+                <input type="email" id="signupEmail" value={signupEmail} onChange={(e) => setSignupEmail(e.target.value)} required className="mt-1 block w-full px-3 py-2 bg-white/10 text-white border border-white/20 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500" placeholder="viratsharma5@gmail.com"/>
               </div>
               <div>
                 <label htmlFor="signupPassword" className="block text-sm font-medium text-white/80">Password</label>
-                <input type="password" id="signupPassword" value={signupPassword} onChange={(e) => setSignupPassword(e.target.value)} required className="mt-1 block w-full px-3 py-2 bg-white/10 text-white border border-white/20 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"/>
+                <input type="password" id="signupPassword" value={signupPassword} onChange={(e) => setSignupPassword(e.target.value)} required className="mt-1 block w-full px-3 py-2 bg-white/10 text-white border border-white/20 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500" placeholder="A Strong Password"/>
               </div>
               {signupError && <p className="text-red-400 text-sm text-center">{signupError}</p>}
               <button type="submit" disabled={isSignupSubmitting} className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50">
@@ -123,11 +123,11 @@ function AuthComponent() {
             <form onSubmit={handleLoginSubmit} className="space-y-4">
               <div>
                 <label htmlFor="loginEmail" className="block text-sm font-medium text-white/80">Email</label>
-                <input type="email" id="loginEmail" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} required className="mt-1 block w-full px-3 py-2 bg-white/10 text-white border border-white/20 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"/>
+                <input type="email" id="loginEmail" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} required className="mt-1 block w-full px-3 py-2 bg-white/10 text-white border border-white/20 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500" placeholder="viratsharma@gmail.com"/>
               </div>
               <div>
                 <label htmlFor="loginPassword" className="block text-sm font-medium text-white/80">Password</label>
-                <input type="password" id="loginPassword" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} required className="mt-1 block w-full px-3 py-2 bg-white/10 text-white border border-white/20 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"/>
+                <input type="password" id="loginPassword" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} required className="mt-1 block w-full px-3 py-2 bg-white/10 text-white border border-white/20 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500" placeholder="Check Your Remembarance"/>
               </div>
               {loginError && <p className="text-red-400 text-sm text-center">{loginError}</p>}
               <button type="submit" disabled={isLoginSubmitting} className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50">
