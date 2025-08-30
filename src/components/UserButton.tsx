@@ -10,13 +10,13 @@ export default function UserButton() {
   return (
     <div className="flex items-center space-x-4">
       <span className="text-gray-300 hidden sm:block">
-        Welcome, {session.user?.name}
+        {session.user?.name}
       </span>
       <button
         onClick={() => signOut({ callbackUrl: '/' })}
         className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-colors"
       >
-        Sign Out
+        Logout
       </button>
     </div>
   );

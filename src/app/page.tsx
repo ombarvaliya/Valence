@@ -7,10 +7,10 @@ export default function LandingPage() {
         <header className="fixed top-2 z-50 max-w-7xl bg-white/20 border rounded-xl border-white/30 container mx-auto px-6 py-4 flex justify-between items-center">
           <img src="/logo-withoutBg.png" className="h-8"></img>
           <nav className="space-x-4">
-            <Link href="/login" className="text-gray-300 hover:text-white transition-colors">
+            <Link href="/auth" className="text-gray-300 hover:text-white transition-colors">
               Login
             </Link>
-            <Link href="/signup" className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
+            <Link href="/auth" className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
               Sign Up
             </Link>
           </nav>
