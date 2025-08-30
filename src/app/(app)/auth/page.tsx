@@ -106,7 +106,7 @@ function AuthComponent() {
         
 
         {/* SIGNUP FORM CONTAINER (Left Side) */}
-        <div className="w-1/2 p-8 flex flex-col justify-center bg-[#192313]">
+        <div className="w-1/2 p-8 flex flex-col justify-center bg-gradient-to-br from-[#192313] to-[#2D4323] ">
             <div className="text-center mb-6 border border-white/30 bg-white/20 p-4 rounded-xl">
               <h2 className="text-3xl font-bold text-white">Create Account</h2>
             </div>
@@ -132,7 +132,7 @@ function AuthComponent() {
 
 
         {/* LOGIN FORM CONTAINER (Right Side) */}
-        <div className="w-1/2 p-8 flex flex-col justify-center bg-[#192313]">
+        <div className="w-1/2 p-8 flex flex-col justify-center bg-gradient-to-br from-[#192313] to-[#2D4323]">
             <div className="text-center mb-6 border border-white/30 bg-white/20 rounded-xl p-4">
               <h2 className="text-3xl font-bold text-white">Log In</h2>
             </div>
