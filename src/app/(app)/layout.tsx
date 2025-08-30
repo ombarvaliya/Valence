@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import Chatbot from "@/components/Chatbot"; // 1. Import the new component
 
 export default function AppLayout({
   children,
@@ -6,15 +7,15 @@ export default function AppLayout({
   children: React.ReactNode
 }) {
   return (
-    // Ensure the root of the protected app takes full screen height
-    <div className="flex flex-col h-screen bg-gray-800">
-      <div className="sticky top-0 z-50 bg-gray-800">
+    // We use a relative container to position the chatbot correctly
+    <div className="flex flex-col h-screen bg-white">
+      <div className="sticky top-0 z-50 bg-transparent">
         <Header/>
       </div>
-      {/* Ensure the main content area grows and allows its children to have height */}
       <main className="flex-grow relative bg-gray-200">
         {children}
       </main>
+      <Chatbot /> {/* 2. Add the chatbot component here */}
     </div>
   )
 }
