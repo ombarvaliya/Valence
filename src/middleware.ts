@@ -6,6 +6,7 @@ export const config = {
     '/map',
     '/dashboard',
     '/analytics',
-    '/add-asset',
+    '/add-asset-visual', 
+    '/analyze',
   ],
 }
