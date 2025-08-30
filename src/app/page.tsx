@@ -30,9 +30,10 @@ export default function LandingPage() {
         <header className="fixed top-2 z-50 w-full max-w-7xl bg-white/20 border rounded-xl border-white/30 container mx-auto px-6 py-4 flex justify-between items-center backdrop-blur-sm">
           <Link href="/"><Image src="/logo-withoutBg.png" alt="Valence Logo" width={100} height={28} /></Link>
           <nav className="space-x-6 flex items-center">
-            <Link href="/about" className="text-gray-200 hover:text-white font-semibold transition-colors">About Us</Link>
-            <Link href="/login" className="text-gray-300 hover:text-white transition-colors">Login</Link>
-            <Link href="/signup" className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">Sign Up</Link>
+            <Link href="/about" className="text-gray-300 hover:text-white transition-colors">About Us</Link>
+            <Link href="/contact" className="text-gray-300 hover:text-white transition-colors">Contact Us</Link>
+            <Link href="/auth?mode=login" className="text-gray-300 hover:text-white transition-colors">Login</Link>
+            <Link href="/auth?mode=signup" className="bg-green-600 hover:bg-green-700 text-white/80 font-bold py-2 px-4 rounded-lg transition-colors">Sign Up</Link>
           </nav>
         </header>
         <main className="flex-grow flex items-center">
@@ -44,29 +45,35 @@ export default function LandingPage() {
           >
             <h2 className="text-5xl md:text-6xl font-extrabold leading-tight mb-4">The Future of <span className="text-green-400">Green Energy</span>, Mapped.</h2>
             <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">Valence is a cutting-edge platform providing data-driven intelligence to map, analyze, and optimize green hydrogen infrastructure.</p>
-            <Link href="/signup" className="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition-transform transform hover:scale-105">Get Started for Free</Link>
+            <Link href="/auth?mode=signup" className="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition-transform transform hover:scale-105">Get Started for Free</Link>
           </motion.div>
         </main>
       </div>
 
-      <section className="py-16 px-6 mx-auto text-center flex flex-col items-center w-full bg-gradient-to-b from-[#2D4323] to-[#192313]">
-        <AnimatedSection>
-          <div className="bg-white/10 py-8 px-4 border border-white/30 rounded-xl flex flex-col items-center max-w-6xl">
-            <div className="text-green-500"><ProblemIcon /></div>
-            <h2 className="text-3xl font-bold text-white mt-4">Problem</h2>
-            <p className="mt-4 text-lg max-w-5xl text-gray-300">The hydrogen economy is growing rapidly, but poor infrastructure planning can lead to redundant investments, high costs, and missed opportunities.</p>
-          </div>
-        </AnimatedSection>
+      {/* --- PROBLEM SECTION (Corrected for Centering) --- */}
+      <section className="py-20 w-full bg-gradient-to-b from-[#2D4323] to-[#192313]">
+        <div className="container mx-auto px-6">
+            <AnimatedSection>
+                <div className="bg-white/10 py-8 px-4 border border-white/30 rounded-xl flex flex-col items-center max-w-6xl mx-auto text-center">
+                    <div className="text-green-500"><ProblemIcon /></div>
+                    <h2 className="text-3xl font-bold text-white mt-4">Problem</h2>
+                    <p className="mt-4 text-lg max-w-5xl text-gray-300">The hydrogen economy is growing rapidly, but poor infrastructure planning can lead to redundant investments, high costs, and missed opportunities.</p>
+                </div>
+            </AnimatedSection>
+        </div>
       </section>
 
-      <section className="py-8 px-6 text-center flex flex-col items-center bg-gradient-to-b from-[#192313] to-[#121A0E]">
-        <AnimatedSection>
-          <div className="bg-white/10 py-8 px-4 border border-white/30 rounded-xl flex flex-col items-center max-w-6xl">
-            <div className="text-green-500"><SolutionIcon /></div>
-            <h2 className="text-3xl font-bold text-white mt-4">Solution</h2>
-            <p className="mt-4 text-lg max-w-5xl text-gray-300">An interactive map-based tool that visualizes infrastructure and recommends optimal site selection using data-driven insights.</p>
-          </div>
-        </AnimatedSection>
+      {/* --- SOLUTION SECTION (Corrected for Centering) --- */}
+      <section className="py-20 w-full bg-gradient-to-b from-[#192313] to-[#121A0E]">
+        <div className="container mx-auto px-6">
+            <AnimatedSection>
+                <div className="bg-white/10 py-8 px-4 border border-white/30 rounded-xl flex flex-col items-center max-w-6xl mx-auto text-center">
+                    <div className="text-green-500"><SolutionIcon /></div>
+                    <h2 className="text-3xl font-bold text-white mt-4">Solution</h2>
+                    <p className="mt-4 text-lg max-w-5xl text-gray-300">An interactive map-based tool that visualizes infrastructure and recommends optimal site selection using data-driven insights.</p>
+                </div>
+            </AnimatedSection>
+        </div>
       </section>
 
       <section className="mx-auto w-full bg-gradient-to-b from-[#121A0E] to-[#2D4323]">
@@ -155,7 +162,7 @@ export default function LandingPage() {
               <p className="mt-4 text-lg text-gray-300">Join Valence today. Start mapping your assets, gain data-driven insights, and become a key player in the green hydrogen revolution.</p>
               <div className="mt-10 flex justify-center gap-4">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link href="/signup" className="block bg-green-600 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg">Get Started Now</Link>
+                  <Link href="/auth?mode=signup" className="block bg-green-600 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg">Get Started Now</Link>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link href="/about" className="block bg-transparent border-2 border-white text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg hover:bg-white hover:text-[#192313] transition-colors duration-300">Learn More</Link>
@@ -166,7 +173,25 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <footer className="container bg-[#192313] mx-auto px-6 py-8 text-center text-white text-sm">
+      <footer className="bg-[#192313] w-full px-6 py-8 text-center text-white/50 text-sm flex flex-col items-center">
+        <div className="grid grid-cols-4 gap-12 w-full max-w-7xl">
+          <div className="w-full">
+            <img src="/logo-withoutBg.png" className="h-8"></img>
+            <></>
+          </div>
+          <div className="w-full">
+            <img src="/logo-withoutBg.png" className="h-8"></img>
+            <></>
+          </div>
+          <div className="w-full">
+            <img src="/logo-withoutBg.png" className="h-8"></img>
+            <></>
+          </div>
+          <div className="w-full">
+                        <img src="/logo-withoutBg.png" className="h-8"></img>
+            <></>
+          </div>
+        </div>
         &copy; {new Date().getFullYear()} Valence. All Rights Reserved.
       </footer>
     </div>

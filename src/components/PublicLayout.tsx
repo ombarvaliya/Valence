@@ -17,9 +17,6 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
     <div className="min-h-screen flex flex-col bg-[#121A0E] text-white">
       <motion.header
         className="fixed top-0 z-50 w-full p-2 transition-colors duration-300"
-        animate={{ 
-          backgroundColor: scrolled ? 'rgba(18, 26, 14, 0.8)' : 'rgba(18, 26, 14, 0)',
-        }}
       >
         <div
           className="max-w-7xl bg-white/5 border rounded-xl border-white/20 container mx-auto px-6 py-4 flex justify-between items-center backdrop-blur-sm transition-shadow duration-300"
@@ -31,7 +28,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
             <Image src="/logo-withoutBg.png" alt="Valence Logo" width={100} height={28} />
           </Link>
           <nav className="space-x-6 flex items-center">
-            <Link href="/about" className="text-gray-200 hover:text-white font-semibold transition-colors">
+            <Link href="/about" className="text-gray-300 hover:text-white transition-colors">
               About Us
             </Link>
             <Link href="/contact" className="text-gray-300 hover:text-white transition-colors">

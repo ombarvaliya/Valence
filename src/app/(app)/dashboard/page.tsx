@@ -71,28 +71,29 @@ export default function DashboardPage() {
     if (isLoading) return <div className="p-8 text-center text-gray-600">Loading Your Assets...</div>;
 
     return (
-        <div className="bg-gray-100 min-h-full p-4 sm:p-6 md:p-8">
-          <div className="max-w-7xl mx-auto">
-              <header className="text-center mb-10">
-                <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">Analysis Dashboard</h1>
-                <p className="mt-2 text-lg text-gray-600">
-                  Compare your asset's potential against the nearest and best optimized zones.
-                </p>
-              </header>
+        <div className=" min-h-full p-8  bg-gradient-to-tl from-gray-700 to-gray-400">
+          <div className="max-w-7xl w-full mx-auto">
+            <div className="mb-10 max-w-7xl mx-auto p-6 rounded-xl shadow-md bg-gradient-to-br from-gray-800 to-gray-700">
+                <header className="text-center mb-10 bg-white/20 border py-4 border-white/30 rounded-xl">
+                    <h1 className="text-4xl font-extrabold text-white tracking-tight">Analysis Dashboard</h1>
+                    <p className="mt-2 text-lg text-white/80">
+                    Compare your asset's potential against the nearest and best optimized zones.
+                    </p>
+                </header>
 
-              <div className="mb-10 max-w-lg mx-auto bg-white p-6 rounded-xl shadow-md">
-                  <label htmlFor="asset-select" className="block text-lg font-semibold text-gray-800 mb-2">
+              
+                  <label htmlFor="asset-select" className="block text-lg font-semibold text-white mb-2">
                       1. Select Your Asset to Analyze
                   </label>
-                  <select id="asset-select" value={selectedAssetId} onChange={handleSelectChange} className="block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500">
-                      <option value="">-- Choose an asset --</option>
+                  <select id="asset-select" value={selectedAssetId} onChange={handleSelectChange} className="block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                      <option value="" className="bg-gray-700 text-white">Choose an asset</option>
                       {userAssets.length > 0 ? (
-                          userAssets.map(asset => (<option key={String(asset._id)} value={String(asset._id)}>{asset.name}</option>))
+                          userAssets.map(asset => (<option key={String(asset._id)} value={String(asset._id)} className="bg-gray-700 text-white">{asset.name}</option>))
                       ) : (<option disabled>You have no assets to compare. Add one first!</option>)}
                   </select>
               </div>
 
-              {isComparing && <p className="text-center text-blue-600 font-semibold text-lg">Analyzing location...</p>}
+              {isComparing && <p className="text-center text-gray-800 font-semibold text-lg">Analyzing location...</p>}
               {error && <p className="text-center text-red-600 font-semibold">{error}</p>}
 
               {comparisonResult && (
@@ -103,39 +104,42 @@ export default function DashboardPage() {
                       </div>
                   ) : (
                       <div>
-                          <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">2. Comparison Result</h2>
+                          <h2 className="text-3xl font-bold text-white text-center mb-8">2. Comparison Result</h2>
                           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-                              <div className="bg-white p-6 rounded-xl shadow-lg border-t-4 border-blue-500">
-                                  <h3 className="font-bold text-2xl text-gray-900">Your Asset's Area Potential</h3>
-                                  <p className="text-sm text-gray-500 font-medium">Based on nearest data from: {comparisonResult.userAssetProxyAnalysis.name} (~{comparisonResult.userAssetProxyAnalysis.distance} km away)</p>
+                              {/* Your Asset Card */}
+                              <div className="bg-gradient-to-br from-gray-800 to-gray-700 p-6 rounded-xl shadow-lg border-t-4 border-blue-500">
+                                  <h3 className="font-bold text-2xl text-white">Your Asset's Area Potential</h3>
+                                  <p className="text-sm text-white/80 font-medium">Based on nearest data from: {comparisonResult.userAssetProxyAnalysis.name} (~{comparisonResult.userAssetProxyAnalysis.distance} km away)</p>
                                   <div className="flex flex-col items-center my-6">
                                       <ScoreGauge score={comparisonResult.userAssetProxyAnalysis.score} colorClass="text-blue-500"/>
-                                      <p className="text-md text-gray-600 mt-2 font-semibold">Potential Score</p>
+                                      <p className="text-md text-white mt-2 font-semibold">Potential Score</p>
                                   </div>
                                   <div className="space-y-3">
                                     {comparisonResult.userAssetProxyAnalysis.metrics.map(metric => (
-                                      <StatCard key={metric.label} {...metric} colorClass="text-blue-500" />
+                                      <StatCard key={metric.label} {...metric} colorClass="text-blue-500"/>
                                     ))}
                                   </div>
                               </div>
-                              <div className="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-500">
-                                <h3 className="font-bold text-2xl text-gray-900">Best Optimized Zone</h3>
-                                <p className="text-sm text-gray-500 font-medium">Top-rated location from dataset: {comparisonResult.bestSiteAnalysis.name}</p>
+                              {/* Recommended Optimal Site Card */}
+                              <div className="bg-gradient-to-br from-gray-800 to-gray-700 p-6 rounded-xl shadow-lg border-t-4 border-green-500">
+                                <h3 className="font-bold text-2xl text-white">Best Optimized Zone</h3>
+                                <p className="text-sm text-white/80 font-medium">Top-rated location from dataset: {comparisonResult.bestSiteAnalysis.name}</p>
                                 <div className="flex flex-col items-center my-6">
                                     <ScoreGauge score={comparisonResult.bestSiteAnalysis.score} colorClass="text-green-500"/>
-                                    <p className="text-md text-gray-600 mt-2 font-semibold">Potential Score</p>
+                                    <p className="text-md text-white mt-2 font-semibold">Potential Score</p>
                                 </div>
                                 <div className="space-y-3">
                                   {comparisonResult.bestSiteAnalysis.metrics.map(metric => (
                                     <StatCard key={metric.label} {...metric} colorClass="text-green-500" />
                                   ))}
                                 </div>
-                                <div className="mt-6 bg-green-50 p-4 rounded-lg">
+                                
+                              </div>
+                              <div className="col-span-2 bg-green-50 p-4 rounded-xl w-full">
                                   <h4 className="font-bold text-lg text-green-800">Recommendation</h4>
                                   <p className="text-green-900 mt-2 text-sm">
                                     While your area has potential, relocating or expanding towards the best-optimized zone could significantly improve performance due to superior environmental conditions.
                                   </p>
-                                </div>
                               </div>
                           </div>
                       </div>
