@@ -6,7 +6,7 @@ export default function Header() {
     <header className="bg-[url('/bgImg.png')] p-2 bg-cover bg-center border border-0 rounded-b-xl text-white z-20 relative flex flex-col items-center">
       <div className="max-w-7xl bg-white/20 border rounded-xl border-white/30 container mx-auto h-16 flex justify-between items-center">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <Link href="/map" className="text-2xl font-bold text-green-400 hover:text-green-300 transition-colors">
+          <Link href="/" className="text-2xl font-bold text-green-400 hover:text-green-300 transition-colors">
             <img src="./logo-withoutBg.png" className="h-8"></img>
           </Link>
           <nav className="flex items-center space-x-6">
