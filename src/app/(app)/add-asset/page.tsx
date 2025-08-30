@@ -4,14 +4,12 @@ import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function AddAssetPage() {
-  // Form state
+  // ... (all your useState hooks remain the same)
   const [name, setName] = useState('');
   const [assetType, setAssetType] = useState<'Renewable' | 'Hydrogen' | 'Demand'>('Renewable');
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [capacity, setCapacity] = useState('');
-
-  // Submission status state
   const [message, setMessage] = useState('');
   const [isError, setIsError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,7 +26,6 @@ export default function AddAssetPage() {
       assetType,
       location: {
         type: 'Point',
-        // GeoJSON format is [longitude, latitude]
         coordinates: [parseFloat(longitude), parseFloat(latitude)],
       },
       capacity,
@@ -37,27 +34,25 @@ export default function AddAssetPage() {
     try {
       const response = await fetch('/api/assets', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newAsset),
       });
 
       const result = await response.json();
 
       if (response.ok) {
-        setMessage('Asset added successfully! Redirecting to map...');
+        setMessage('Asset added successfully! Redirecting...');
         setIsSubmitting(false);
 
-        // Redirect to the map page after a short delay so the user can see the success message
-        setTimeout(() => {
-            router.push('/map');
-            router.refresh(); // Forces a refresh of the map page to show new data
-        }, 2000);
+        // --- THIS IS THE CRUCIAL FIX ---
+        // 1. We push the user to the map page.
+        router.push('/map');
+        // 2. We then tell the router to refresh, which forces a new data fetch.
+        router.refresh();
 
       } else {
         setIsError(true);
-        setMessage(result.message || 'Failed to add asset. Please check your inputs.');
+        setMessage(result.message || 'Failed to add asset.');
         setIsSubmitting(false);
       }
     } catch (error) {
@@ -77,11 +72,11 @@ export default function AddAssetPage() {
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-lg shadow-md">
+              {/* ... All your form inputs remain exactly the same ... */}
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">Asset Name</label>
                 <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"/>
               </div>
-
               <div>
                 <label htmlFor="assetType" className="block text-sm font-medium text-gray-700">Asset Type</label>
                 <select id="assetType" value={assetType} onChange={(e) => setAssetType(e.target.value as any)} required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
@@ -90,7 +85,6 @@ export default function AddAssetPage() {
                   <option value="Demand">Demand</option>
                 </select>
               </div>
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="latitude" className="block text-sm font-medium text-gray-700">Latitude (North/South)</label>
@@ -101,21 +95,14 @@ export default function AddAssetPage() {
                   <input type="number" step="any" id="longitude" value={longitude} onChange={(e) => setLongitude(e.target.value)} required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500" placeholder="e.g., 72.5714"/>
                 </div>
               </div>
-
               <div>
                 <label htmlFor="capacity" className="block text-sm font-medium text-gray-700">Capacity (Optional)</label>
                 <input type="text" id="capacity" value={capacity} onChange={(e) => setCapacity(e.target.value)} className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500" placeholder="e.g., 50MW"/>
               </div>
-
               <button type="submit" disabled={isSubmitting} className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:bg-gray-400 disabled:cursor-not-allowed">
                 {isSubmitting ? 'Submitting...' : 'Add Asset'}
               </button>
-
-              {message && (
-                <p className={`mt-4 text-center text-sm font-semibold ${isError ? 'text-red-600' : 'text-green-600'}`}>
-                  {message}
-                </p>
-              )}
+              {message && <p className={`mt-4 text-center text-sm font-semibold ${isError ? 'text-red-600' : 'text-green-600'}`}>{message}</p>}
             </form>
         </div>
       </div>

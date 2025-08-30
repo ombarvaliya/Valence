@@ -1,57 +1,58 @@
 import { NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '../auth/[...nextauth]/route';
 import dbConnect from '@/lib/mongodb';
 import Asset from '@/models/Asset';
 
-// --- GET All Assets ---
+// --- THIS IS THE CRUCIAL FIX ---
+// This line tells Next.js to always run this route on the server dynamically
+// and never cache the result.
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: Request) {
+  const session = await getServerSession(authOptions);
+
+  if (!session?.user?.id) {
+    return NextResponse.json({ success: false, message: 'Unauthorized: No session found' }, { status: 401 });
+  }
+
+  const userId = session.user.id;
+
   try {
     await dbConnect();
+    const assets = await Asset.find({ userId: userId });
 
-    const assets = await Asset.find({});
-
-    return NextResponse.json({
-      success: true,
-      data: assets,
-    }, { status: 200 });
-
+    return NextResponse.json({ success: true, data: assets }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({
-      success: false,
-      message: 'Server Error: Failed to fetch assets',
-      error: error instanceof Error ? error.message : 'Unknown error',
-    }, { status: 500 });
+    console.error("[API/ASSETS/GET] Server Error:", error);
+    return NextResponse.json({ success: false, message: 'Server Error' }, { status: 500 });
   }
 }
 
-// --- CREATE a New Asset ---
 export async function POST(request: Request) {
+  const session = await getServerSession(authOptions);
+
+  if (!session?.user?.id) {
+    return NextResponse.json({ success: false, message: 'Unauthorized: No session found' }, { status: 401 });
+  }
+
+  const userId = session.user.id;
+
   try {
+    const body = await request.json();
     await dbConnect();
 
-    const body = await request.json(); // 1. Get the data from the request body
-    const asset = await Asset.create(body); // 2. Create a new asset document
+    const newAsset = await Asset.create({
+      ...body,
+      userId: userId,
+    });
 
-    // 3. Return a success response with the new data
-    return NextResponse.json({
-      success: true,
-      data: asset,
-    }, { status: 201 }); // 201 Created status
-
-  } catch (error) {
-    // 4. Handle errors, including validation errors
-    if (error instanceof Error && error.name === 'ValidationError') {
-      return NextResponse.json({
-        success: false,
-        message: 'Validation Error: Please check your data',
-        error: error.message,
-      }, { status: 400 }); // 400 Bad Request status
+    return NextResponse.json({ success: true, data: newAsset }, { status: 201 });
+  } catch (error: any) {
+    console.error("[API/ASSETS/POST] Server Error:", error);
+    if (error.name === 'ValidationError') {
+      return NextResponse.json({ success: false, message: error.message }, { status: 400 });
     }
-    
-    return NextResponse.json({
-      success: false,
-      message: 'Server Error: Failed to create asset',
-      error: error instanceof Error ? error.message : 'Unknown error',
-    }, { status: 500 });
+    return NextResponse.json({ success: false, message: 'Server Error' }, { status: 500 });
   }
 }
-
