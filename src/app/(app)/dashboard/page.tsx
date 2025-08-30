@@ -83,7 +83,7 @@ export default function DashboardPage() {
 
               
                   <label htmlFor="asset-select" className="block text-lg font-semibold text-white mb-2">
-                      1. Select Your Asset to Analyze
+                      Select Your Asset to Analyze
                   </label>
                   <select id="asset-select" value={selectedAssetId} onChange={handleSelectChange} className="block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
                       <option value="" className="bg-gray-700 text-white">Choose an asset</option>
@@ -104,7 +104,7 @@ export default function DashboardPage() {
                       </div>
                   ) : (
                       <div>
-                          <h2 className="text-3xl font-bold text-white text-center mb-8">2. Comparison Result</h2>
+                          <h2 className="text-3xl font-bold text-white text-center mb-8">Comparison Result</h2>
                           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                               {/* Your Asset Card */}
                               <div className="bg-gradient-to-br from-gray-800 to-gray-700 p-6 rounded-xl shadow-lg border-t-4 border-blue-500">
