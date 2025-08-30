@@ -100,14 +100,14 @@ function AuthComponent() {
   // --- PAGE RENDER ---
   return (
     <div className="bg-[url('/bgImg.png')] bg-cover bg-center min-h-screen flex items-center justify-center p-4 font-sans">
-      <div className="w-full max-w-4xl min-h-[600px] relative bg-[#141d10] rounded-2xl shadow-2xl flex overflow-hidden">
+      <div className="w-full max-w-4xl min-h-[400px] relative bg-[#141d10] rounded-2xl shadow-2xl flex overflow-hidden">
         
         
         
 
-        {/* SIGNUP FORM CONTAINER (Right Side) */}
-        <div className="w-1/2 p-8 flex flex-col justify-center">
-            <div className="text-center mb-6">
+        {/* SIGNUP FORM CONTAINER (Left Side) */}
+        <div className="w-1/2 p-8 flex flex-col justify-center bg-[#192313]">
+            <div className="text-center mb-6 border border-white/30 bg-white/20 p-4 rounded-xl">
               <h2 className="text-3xl font-bold text-white">Create Account</h2>
             </div>
             <form onSubmit={handleSignupSubmit} className="space-y-4">
@@ -131,9 +131,9 @@ function AuthComponent() {
         </div>
 
 
-        {/* LOGIN FORM CONTAINER (Left Side) */}
-        <div className="w-1/2 p-8 flex flex-col justify-center">
-            <div className="text-center mb-6">
+        {/* LOGIN FORM CONTAINER (Right Side) */}
+        <div className="w-1/2 p-8 flex flex-col justify-center bg-[#192313]">
+            <div className="text-center mb-6 border border-white/30 bg-white/20 rounded-xl p-4">
               <h2 className="text-3xl font-bold text-white">Log In</h2>
             </div>
             <form onSubmit={handleLoginSubmit} className="space-y-4">
@@ -154,11 +154,11 @@ function AuthComponent() {
 
         {/* OVERLAY CONTAINER (Slides Left and Right) */}
         <div className={`absolute top-0 left-0 w-1/2 h-full transition-transform duration-700 ease-in-out ${isSignUp ? 'translate-x-full' : 'translate-x-0'}`}>
-          <div className="bg-gradient-to-br from-green-500 to-teal-600 relative h-full w-full rounded-2xl flex flex-col items-center justify-center text-center p-8 text-white">
+          <div className="bg-gradient-to-br from-[#2D4323] to-[#406D32] relative h-full w-full rounded-2xl flex flex-col items-center justify-center text-center p-8 text-white">
             
             {/* LOGIN OVERLAY PANEL (Shows "Welcome Back") */}
             <div className={`absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center p-8 transition-opacity duration-500 ease-in-out ${isSignUp ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-              <Link href="/" className="inline-block mb-4">
+              <Link href="/" className="inline-block mb-12">
                 <img src="/logo-withoutBg.png" className="w-28 mx-auto" alt="Valence Logo"/>
               </Link>
               <h2 className="text-3xl font-bold">Welcome Back!</h2>
@@ -170,7 +170,7 @@ function AuthComponent() {
 
             {/* SIGNUP OVERLAY PANEL (Shows "New Here?") */}
             <div className={`absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center p-8 transition-opacity duration-500 ease-in-out ${!isSignUp ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-              <Link href="/" className="inline-block mb-4">
+              <Link href="/" className="inline-block mb-12">
                 <img src="/logo-withoutBg.png" className="w-28 mx-auto" alt="Valence Logo"/>
               </Link>
               <h2 className="text-3xl font-bold">New Here?</h2>

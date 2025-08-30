@@ -1,9 +1,8 @@
 'use client';
-import { IAsset } from '@/models/Asset'; // Ensure this import is present
+import { IAsset } from '@/models/Asset';
 
-// This interface defines the expected types for the props
 interface Props {
-  assets: IAsset[]; // It expects an array of IAsset
+  assets: IAsset[];
   filters: string[];
   isAnalysisLoading: boolean;
   onAssetClick: (asset: IAsset) => void;
@@ -13,70 +12,85 @@ interface Props {
 
 const ASSET_TYPES = ['Renewable', 'Hydrogen', 'Demand'];
 
-const AssetSidebar = ({ assets, filters, isAnalysisLoading, onAssetClick, onFilterChange, onRunOptimization }: Props) => {
-
-  const getTypeColor = (assetType: IAsset['assetType']) => {
-    const colors = {
-      Renewable: 'bg-green-500',
-      Hydrogen: 'bg-blue-500',
-      Demand: 'bg-orange-500',
-    };
-    return colors[assetType] || 'bg-gray-500';
+// AssetTypeBadge component with a color scheme matching the new theme
+const AssetTypeBadge = ({ assetType }: { assetType: IAsset['assetType'] }) => {
+  const typeStyles = {
+    Renewable: 'bg-green-200 text-green-900',
+    Hydrogen: 'bg-sky-200 text-sky-900', // Using sky for contrast
+    Demand: 'bg-amber-200 text-amber-900',
   };
 
   return (
-    <aside className="bg-[#192313] w-full md:w-80 lg:w-96 p-4 shadow-lg z-10 border-t rounded-t-xl overflow-y-auto h-full flex flex-col">
-      <h2 className="text-2xl font-bold text-white mb-4">Controls</h2>
+    <span className={`px-2 py-1 text-xs font-medium rounded-full ${typeStyles[assetType] || 'bg-gray-200 text-gray-800'}`}>
+      {assetType}
+    </span>
+  );
+};
 
-      <div className="mb-6 p-4 bg-white/20 border border-white/30 rounded-xl ">
-        <h3 className="font-semibold text-white mb-3">Filters</h3>
-        <div className="space-y-2">
+
+const AssetSidebar = ({ assets, filters, isAnalysisLoading, onAssetClick, onFilterChange, onRunOptimization }: Props) => {
+  return (
+    // Main sidebar container with a dark teal background
+    <aside className="bg-gray-800 text-slate-200 w-full md:w-80 lg:w-96 p-6 shadow-lg z-10 overflow-y-auto h-full flex flex-col space-y-8">
+
+      {/* Section 1: Filters */}
+      <div>
+        <h3 className="text-lg font-semibold text-white mb-4">Filters</h3>
+        <div className="space-y-3">
           {ASSET_TYPES.map((type) => (
-            <label key={type} className="flex items-center space-x-3 cursor-pointer">
+            <label key={type} className="flex items-center space-x-3 cursor-pointer group">
               <input
                 type="checkbox"
                 checked={filters.includes(type)}
                 onChange={() => onFilterChange(type)}
-                className="h-5 w-5 rounded border-gray-300 text-green-600 focus:ring-green-500"
+                // Styled checkbox with a mint green accent
+                className="h-5 w-5 rounded border-gray-600 bg-gray-700 text-green-500 focus:ring-green-500 focus:ring-2 focus:ring-offset-gray-800"
               />
-              <span className="text-white">{type}</span>
+              <span className="text-slate-300 group-hover:text-white transition-colors">{type}</span>
             </label>
           ))}
         </div>
       </div>
 
-      <div className="mb-6 p-4 bg-white/20 rounded-xl border border-white/30">
-        <h3 className="font-semibold text-white mb-3">Analysis</h3>
+      <hr className="border-gray-700" />
+
+      {/* Section 2: Analysis */}
+      <div>
+        <h3 className="text-lg font-semibold text-white mb-4">Analysis</h3>
         <button
           onClick={onRunOptimization}
           disabled={isAnalysisLoading}
-          className="w-full bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+          // Primary button with a vibrant green accent
+          className="w-full bg-[#406D32] text-white font-bold py-2.5 px-4 rounded-lg hover:bg-[#406D32]/60 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-800"
         >
           {isAnalysisLoading ? 'Analyzing...' : 'Find Optimal Zones'}
         </button>
       </div>
 
-      <h2 className="text-xl font-bold text-white mb-4">Asset List</h2>
-      <div className="space-y-3 flex-grow overflow-y-auto">
-        {assets.length === 0 ? (
-          <p className="text-white">No assets match the current filters.</p>
-        ) : (
-          assets.map((asset) => (
-            <div
-              key={String(asset._id)}
-              onClick={() => onAssetClick(asset)}
-              className="p-3 bg-white/20 border-white/30 rounded-xl shadow-sm hover:shadow-md hover:bg-white/60 cursor-pointer transition-all border border-gray-200"
-            >
-              <div className="flex items-center space-x-3">
-                <div className={`w-3 h-3 rounded-full ${getTypeColor(asset.assetType)}`}></div>
-                <div>
+      <hr className="border-gray-700" />
+
+      {/* Section 3: Asset List */}
+      <div className="flex flex-col flex-grow min-h-0">
+        <h2 className="text-lg font-bold text-white mb-4">Asset List</h2>
+        <div className="space-y-2 flex-grow overflow-y-auto pr-2 -mr-2"> {/* Padding for scrollbar */}
+          {assets.length === 0 ? (
+            <p className="text-gray-400">No assets match the current filters.</p>
+          ) : (
+            assets.map((asset) => (
+              <div
+                key={String(asset._id)}
+                onClick={() => onAssetClick(asset)}
+                // Asset list items with a subtle hover effect
+                className="p-4 bg-gray-700/50 rounded-lg hover:bg-gray-700 cursor-pointer transition-colors"
+              >
+                <div className="flex items-center justify-between">
                   <h3 className="font-semibold text-white">{asset.name}</h3>
-                  <p className="text-sm text-white">{asset.assetType}</p>
+                  <AssetTypeBadge assetType={asset.assetType} />
                 </div>
               </div>
-            </div>
-          ))
-        )}
+            ))
+          )}
+        </div>
       </div>
     </aside>
   );
