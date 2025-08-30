@@ -14,7 +14,7 @@ export default function UserButton() {
       </span>
       <button
         onClick={() => signOut({ callbackUrl: '/' })}
-        className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-colors"
+        className="bg-red-700/60 hover:bg-red-500/60 text-white font-bold py-2 px-4 rounded-lg transition-colors"
       >
         Logout
       </button>
