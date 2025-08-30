@@ -167,7 +167,7 @@ export default function AboutPage() {
               </p>
               <div className="mt-10">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }} className="inline-block">
-                  <Link href="/signup" className="bg-green-600 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg shadow-green-500/20 hover:bg-green-700 transition-all duration-300">
+                  <Link href="/auth" className="bg-green-600 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg shadow-green-500/20 hover:bg-green-700 transition-all duration-300">
                     Get Started Now
                   </Link>
                 </motion.div>
