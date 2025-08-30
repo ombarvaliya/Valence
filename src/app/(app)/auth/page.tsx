@@ -1,7 +1,5 @@
 'use client';
 
-// All necessary imports are included here
-// We've added useSearchParams to read the URL.
 import { useState, FormEvent, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { signIn } from 'next-auth/react';
@@ -9,13 +7,10 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 
-// We wrap the main logic in a component to use Suspense, which is required for useSearchParams.
 function AuthComponent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  // --- STATE MANAGEMENT ---
-  // Check URL for `mode=signup` to set the initial state.
   const [isSignUp, setIsSignUp] = useState(searchParams.get('mode') === 'signup');
 
   // This effect ensures the panel switches if the user navigates with browser buttons.
@@ -24,22 +19,18 @@ function AuthComponent() {
   }, [searchParams]);
 
 
-  // Login Form State
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const [isLoginSubmitting, setIsLoginSubmitting] = useState(false);
 
-  // Signup Form State
   const [signupName, setSignupName] = useState('');
   const [signupEmail, setSignupEmail] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
   const [signupError, setSignupError] = useState('');
   const [isSignupSubmitting, setIsSignupSubmitting] = useState(false);
 
-  // --- NAVBAR HIDING LOGIC ---
   useEffect(() => {
-    // IMPORTANT: Replace 'header' with the correct CSS selector for your navbar.
     const navbarSelector = 'header';
     const navbar = document.querySelector(navbarSelector) as HTMLElement | null;
     if (navbar) {
@@ -52,7 +43,6 @@ function AuthComponent() {
     };
   }, []);
 
-  // --- FORM SUBMISSION HANDLERS ---
   const handleLoginSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoginSubmitting(true);
@@ -97,15 +87,10 @@ function AuthComponent() {
     }
   };
 
-  // --- PAGE RENDER ---
   return (
     <div className="bg-[url('/bgImg.png')] bg-cover bg-center min-h-screen flex items-center justify-center p-4 font-sans">
       <div className="w-full max-w-4xl min-h-[400px] relative bg-[#141d10] rounded-2xl shadow-2xl flex overflow-hidden">
         
-        
-        
-
-        {/* SIGNUP FORM CONTAINER (Left Side) */}
         <div className="w-1/2 p-8 flex flex-col justify-center bg-gradient-to-br from-[#192313] to-[#2D4323] ">
             <div className="text-center mb-6 border border-white/30 bg-white/20 p-4 rounded-xl">
               <h2 className="text-3xl font-bold text-white">Create Account</h2>
@@ -131,7 +116,6 @@ function AuthComponent() {
         </div>
 
 
-        {/* LOGIN FORM CONTAINER (Right Side) */}
         <div className="w-1/2 p-8 flex flex-col justify-center bg-gradient-to-br from-[#192313] to-[#2D4323]">
             <div className="text-center mb-6 border border-white/30 bg-white/20 rounded-xl p-4">
               <h2 className="text-3xl font-bold text-white">Log In</h2>
@@ -152,11 +136,9 @@ function AuthComponent() {
             </form>
         </div>
 
-        {/* OVERLAY CONTAINER (Slides Left and Right) */}
         <div className={`absolute top-0 left-0 w-1/2 h-full transition-transform duration-700 ease-in-out ${isSignUp ? 'translate-x-full' : 'translate-x-0'}`}>
           <div className="bg-gradient-to-br from-[#2D4323] to-[#406D32] relative h-full w-full rounded-2xl flex flex-col items-center justify-center text-center p-8 text-white">
             
-            {/* LOGIN OVERLAY PANEL (Shows "Welcome Back") */}
             <div className={`absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center p-8 transition-opacity duration-500 ease-in-out ${isSignUp ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
               <Link href="/" className="inline-block mb-12">
                 <img src="/logo-withoutBg.png" className="w-28 mx-auto" alt="Valence Logo"/>
@@ -168,7 +150,6 @@ function AuthComponent() {
               </button>
             </div>
 
-            {/* SIGNUP OVERLAY PANEL (Shows "New Here?") */}
             <div className={`absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center p-8 transition-opacity duration-500 ease-in-out ${!isSignUp ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
               <Link href="/" className="inline-block mb-12">
                 <img src="/logo-withoutBg.png" className="w-28 mx-auto" alt="Valence Logo"/>

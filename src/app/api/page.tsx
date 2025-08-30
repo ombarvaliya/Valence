@@ -13,8 +13,6 @@ export default function LoginPage() {
     e.preventDefault();
     setIsSubmitting(true);
     setError('');
-    // NOTE: NextAuth login logic will be added in the next step
-    // For now, this is just the UI
     console.log('Logging in with:', { email, password });
     // Simulate API call
     setTimeout(() => {

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// This function now makes a real call to the Gemini API using your key
 async function getGeminiResponse(question: string, chatHistory: any[]): Promise<string> {
     // 1. Read the API key from your secure environment variables
     const apiKey = process.env.GEMINI_API_KEY;

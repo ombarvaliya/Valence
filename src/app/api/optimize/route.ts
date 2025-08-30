@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getOptimizedSites } from '@/lib/data'; // Import the new function
+import { getOptimizedSites } from '@/lib/data'; 
 
 export async function GET(req: Request) {
   try {

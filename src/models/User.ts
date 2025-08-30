@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 export interface IUser extends Document {
   name: string;
   email: string;
-  password?: string; // Password is optional on the interface because it won't always be selected
+  password?: string; 
 }
 
 const UserSchema: Schema = new Schema({
@@ -21,13 +21,12 @@ const UserSchema: Schema = new Schema({
   password: {
     type: String,
     required: [true, 'Password is required.'],
-    select: false, // Prevents password from being returned in queries by default
+    select: false,
   },
 }, {
   timestamps: true,
 });
 
-// Hash password before saving the user document
 UserSchema.pre<IUser>('save', async function (next) {
   if (!this.isModified('password') || !this.password) {
     return next();

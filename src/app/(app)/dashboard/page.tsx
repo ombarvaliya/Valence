@@ -105,7 +105,6 @@ export default function DashboardPage() {
                       <div>
                           <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">2. Comparison Result</h2>
                           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-                              {/* Your Asset Card */}
                               <div className="bg-white p-6 rounded-xl shadow-lg border-t-4 border-blue-500">
                                   <h3 className="font-bold text-2xl text-gray-900">Your Asset's Area Potential</h3>
                                   <p className="text-sm text-gray-500 font-medium">Based on nearest data from: {comparisonResult.userAssetProxyAnalysis.name} (~{comparisonResult.userAssetProxyAnalysis.distance} km away)</p>
@@ -119,7 +118,6 @@ export default function DashboardPage() {
                                     ))}
                                   </div>
                               </div>
-                              {/* Recommended Optimal Site Card */}
                               <div className="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-500">
                                 <h3 className="font-bold text-2xl text-gray-900">Best Optimized Zone</h3>
                                 <p className="text-sm text-gray-500 font-medium">Top-rated location from dataset: {comparisonResult.bestSiteAnalysis.name}</p>

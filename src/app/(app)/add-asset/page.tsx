@@ -4,7 +4,6 @@ import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function AddAssetPage() {
-  // ... (all your useState hooks remain the same)
   const [name, setName] = useState('');
   const [assetType, setAssetType] = useState<'Renewable' | 'Hydrogen' | 'Demand'>('Renewable');
   const [latitude, setLatitude] = useState('');
@@ -44,10 +43,7 @@ export default function AddAssetPage() {
         setMessage('Asset added successfully! Redirecting...');
         setIsSubmitting(false);
 
-        // --- THIS IS THE CRUCIAL FIX ---
-        // 1. We push the user to the map page.
         router.push('/map');
-        // 2. We then tell the router to refresh, which forces a new data fetch.
         router.refresh();
 
       } else {
@@ -68,7 +64,6 @@ export default function AddAssetPage() {
         <div className="max-w-2xl mx-auto">
 
             <form onSubmit={handleSubmit} className="space-y-6 bg-gradient-to-br from-gray-800 to-gray-700 p-8 rounded-xl shadow-mlg">
-              {/* ... All your form inputs remain exactly the same ... */}
               <div className="bg-white/20 border border-white/30 rounded-xl pt-4">
                 <h1 className="text-3xl font-bold text-white mb-4 text-center">Add a New Asset</h1>
                 <p className="text-center text-white/80 mb-4">

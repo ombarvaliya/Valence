@@ -12,11 +12,10 @@ interface Props {
 
 const ASSET_TYPES = ['Renewable', 'Hydrogen', 'Demand'];
 
-// AssetTypeBadge component with a color scheme matching the new theme
 const AssetTypeBadge = ({ assetType }: { assetType: IAsset['assetType'] }) => {
   const typeStyles = {
     Renewable: 'bg-green-200 text-green-900',
-    Hydrogen: 'bg-sky-200 text-sky-900', // Using sky for contrast
+    Hydrogen: 'bg-sky-200 text-sky-900', 
     Demand: 'bg-amber-200 text-amber-900',
   };
 
@@ -30,10 +29,8 @@ const AssetTypeBadge = ({ assetType }: { assetType: IAsset['assetType'] }) => {
 
 const AssetSidebar = ({ assets, filters, isAnalysisLoading, onAssetClick, onFilterChange, onRunOptimization }: Props) => {
   return (
-    // Main sidebar container with a dark teal background
     <aside className="bg-gray-800 text-slate-200 w-full md:w-80 lg:w-96 p-6 shadow-lg z-10 overflow-y-auto h-full flex flex-col space-y-8">
 
-      {/* Section 1: Filters */}
       <div>
         <h3 className="text-lg font-semibold text-white mb-4">Filters</h3>
         <div className="space-y-3">
@@ -43,7 +40,6 @@ const AssetSidebar = ({ assets, filters, isAnalysisLoading, onAssetClick, onFilt
                 type="checkbox"
                 checked={filters.includes(type)}
                 onChange={() => onFilterChange(type)}
-                // Styled checkbox with a mint green accent
                 className="h-5 w-5 rounded border-gray-600 bg-gray-700 text-green-500 focus:ring-green-500 focus:ring-2 focus:ring-offset-gray-800"
               />
               <span className="text-slate-300 group-hover:text-white transition-colors">{type}</span>
@@ -54,13 +50,11 @@ const AssetSidebar = ({ assets, filters, isAnalysisLoading, onAssetClick, onFilt
 
       <hr className="border-gray-700" />
 
-      {/* Section 2: Analysis */}
       <div>
         <h3 className="text-lg font-semibold text-white mb-4">Analysis</h3>
         <button
           onClick={onRunOptimization}
           disabled={isAnalysisLoading}
-          // Primary button with a vibrant green accent
           className="w-full bg-[#406D32] text-white font-bold py-2.5 px-4 rounded-lg hover:bg-[#406D32]/60 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-800"
         >
           {isAnalysisLoading ? 'Analyzing...' : 'Find Optimal Zones'}
@@ -69,7 +63,6 @@ const AssetSidebar = ({ assets, filters, isAnalysisLoading, onAssetClick, onFilt
 
       <hr className="border-gray-700" />
 
-      {/* Section 3: Asset List */}
       <div className="flex flex-col flex-grow min-h-0">
         <h2 className="text-lg font-bold text-white mb-4">Asset List</h2>
         <div className="space-y-2 flex-grow overflow-y-auto pr-2 -mr-2"> {/* Padding for scrollbar */}
@@ -80,7 +73,6 @@ const AssetSidebar = ({ assets, filters, isAnalysisLoading, onAssetClick, onFilt
               <div
                 key={String(asset._id)}
                 onClick={() => onAssetClick(asset)}
-                // Asset list items with a subtle hover effect
                 className="p-4 bg-gray-700/50 rounded-lg hover:bg-gray-700 cursor-pointer transition-colors"
               >
                 <div className="flex items-center justify-between">

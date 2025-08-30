@@ -5,7 +5,6 @@ import Papa from 'papaparse';
 import fs from 'fs/promises';
 import path from 'path';
 
-// --- Function to get the logged-in user's assets ---
 export async function getUserAssets(userId: string): Promise<IAsset[]> {
   noStore(); 
   try {
@@ -18,7 +17,6 @@ export async function getUserAssets(userId: string): Promise<IAsset[]> {
   }
 }
 
-// --- THIS IS THE CORRECTED SCORING FUNCTION ---
 const calculateScore = (row: any) => {
     let score = 0;
     const reasons: string[] = [];
@@ -48,7 +46,7 @@ const calculateScore = (row: any) => {
     return { score: Math.round(score * 10) / 10, reasons };
 };
 
-// --- Function to get and analyze the built-in dataset ---
+// Function to get and analyze the built-in dataset
 export async function getOptimizedSites() {
   noStore();
   try {

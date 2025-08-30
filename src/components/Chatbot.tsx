@@ -8,7 +8,6 @@ interface Message {
   isUser: boolean;
 }
 
-// Define some default questions for the user to click
 const defaultQuestions = [
   "How do I add an asset?",
   "What do the different colors on the map mean?",
@@ -24,7 +23,6 @@ export default function Chatbot() {
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
-    // On first open, add the initial greeting from the AI
     if (isOpen && messages.length === 0) {
       setIsLoading(true);
       setTimeout(() => {
@@ -88,7 +86,6 @@ export default function Chatbot() {
         </button>
       </div>
 
-      {/* Full Screen Modal */}
       {isOpen && (
         <div 
           className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4"
@@ -96,7 +93,6 @@ export default function Chatbot() {
           <div 
             className="w-full max-w-2xl h-[80vh] max-h-[700px] bg-white rounded-2xl shadow-2xl flex flex-col"
           >
-            {/* Header */}
             <header className="bg-gray-800 text-white p-4 rounded-t-2xl flex justify-between items-center flex-shrink-0">
                 <div>
                     <h3 className="text-xl font-bold">Valence Help Assistant</h3>
@@ -106,7 +102,6 @@ export default function Chatbot() {
                 </button>
             </header>
             
-            {/* Chat History */}
             <div className="flex-grow p-6 overflow-y-auto bg-gray-50">
                 <div className="space-y-6">
                     {messages.map((msg, index) => (
@@ -144,7 +139,6 @@ export default function Chatbot() {
                 )}
             </div>
             
-            {/* Input Form */}
             <form onSubmit={handleSubmit} className="p-4 border-t bg-white rounded-b-2xl flex-shrink-0">
               <div className="flex items-center space-x-2">
                 <input

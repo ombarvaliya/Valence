@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import MapLoader from "@/components/MapLoader";
+import { useSearchParams } from 'next/navigation'; 
+import dynamic from 'next/dynamic';
 import AssetSidebar from '@/components/AssetSidebar';
-import { IAsset } from '@/models/Asset'; // Ensure this import is present
+import { IAsset } from '@/models/Asset';
 
 interface ApiResponse {
   success: boolean;
@@ -27,6 +28,13 @@ export default function MapPage() {
   const [optimalSites, setOptimalSites] = useState<OptimalSite[]>([]);
   const [isAnalysisLoading, setIsAnalysisLoading] = useState(false);
 
+  const searchParams = useSearchParams();
+
+  const MapLoader = useMemo(() => dynamic(() => import('@/components/MapLoader'), { 
+      ssr: false,
+      loading: () => <div className="h-full w-full flex items-center justify-center bg-gray-200"><p>Loading Map...</p></div>
+  }), []);
+
   useEffect(() => {
     const fetchAssets = async () => {
       setStatus('loading');
@@ -34,8 +42,20 @@ export default function MapPage() {
         const response = await fetch('/api/assets');
         const result: ApiResponse = await response.json();
         if (result.success) {
-          setAllAssets(result.data);
-          setStatus(result.data.length > 0 ? 'success' : 'no-data');
+          const assets: IAsset[] = result.data;
+          setAllAssets(assets);
+          setStatus(assets.length > 0 ? 'success' : 'no-data');
+
+          //NEW LOGIC to handle "View on Map" 
+          const assetIdFromUrl = searchParams.get('assetId');
+          if (assetIdFromUrl) {
+            const assetToSelect = assets.find(a => String(a._id) === assetIdFromUrl);
+            if (assetToSelect) {
+              // If found, set it as the selected asset
+              setSelectedAsset(assetToSelect);
+            }
+          }
+
         } else {
           setStatus('error');
         }
@@ -44,8 +64,9 @@ export default function MapPage() {
       }
     };
     fetchAssets();
-  }, []);
+  }, [searchParams]);
 
+  // All your handler functions remain exactly the same
   const handleFilterChange = (assetType: string) => {
     setFilters(prevFilters => {
       if (prevFilters.includes(assetType)) {
@@ -57,10 +78,8 @@ export default function MapPage() {
   };
 
   const filteredAssets = useMemo(() => {
-    // This correctly returns a variable of type IAsset[]
     return allAssets.filter(asset => filters.includes(asset.assetType));
   }, [allAssets, filters]);
-
 
   const handleAssetClick = (asset: IAsset) => {
     setSelectedAsset(asset);
@@ -82,11 +101,12 @@ export default function MapPage() {
     }
   };
 
+  // Your JSX return statement remains exactly the same
   return (
     <div className="flex h-full w-full">
       {(status === 'success' || status === 'no-data' || status === 'loading') && (
         <AssetSidebar
-          assets={filteredAssets} // This is of type IAsset[]
+          assets={filteredAssets}
           filters={filters}
           isAnalysisLoading={isAnalysisLoading}
           onAssetClick={handleAssetClick}
@@ -94,11 +114,10 @@ export default function MapPage() {
           onRunOptimization={handleRunOptimization}
         />
       )}
-
       <div className="flex-grow h-full z-0">
         <MapLoader
           assets={filteredAssets}
-          status={status === 'loading' && allAssets.length === 0 ? 'loading' : 'success'}
+          status={status}
           selectedAsset={selectedAsset}
           optimalSites={optimalSites}
         />

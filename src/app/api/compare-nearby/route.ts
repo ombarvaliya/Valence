@@ -3,7 +3,6 @@ import Papa from 'papaparse';
 import fs from 'fs/promises';
 import path from 'path';
 
-// Haversine formula to calculate distance in km
 function getDistance(lat1: number, lon1: number, lat2: number, lon2: number) {
   const R = 6371;
   const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -51,7 +50,6 @@ export async function POST(req: NextRequest) {
     let bestSiteRow: any = null;
     let maxScore = -Infinity;
 
-    // In a single pass, find both the closest site and the best site
     for (const row of parsedData.data as any[]) {
       // Find closest by distance
       const lat = parseFloat(row.Latitude);

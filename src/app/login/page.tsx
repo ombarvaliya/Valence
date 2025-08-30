@@ -27,7 +27,6 @@ export default function LoginPage() {
       setError('Invalid credentials. Please try again.');
       setIsSubmitting(false);
     } else if (result?.ok) {
-      // On successful login, redirect to the map
       router.push('/map');
     } else {
         setError('An unknown error occurred.');

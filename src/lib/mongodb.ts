@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-// Ensure the MONGO_URI is defined in your .env.local file
 const MONGO_URI = process.env.MONGO_URI;
 
 if (!MONGO_URI) {
@@ -9,11 +8,6 @@ if (!MONGO_URI) {
   );
 }
 
-/**
- * Global is used here to maintain a cached connection across hot reloads
- * in development. This prevents connections growing exponentially
- * during API Route usage.
- */
 let cached = (global as any).mongoose;
 
 if (!cached) {

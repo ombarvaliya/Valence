@@ -1,6 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-// The interface remains the same for now, but the Schema will change.
 export interface IAsset extends Document {
   name: string;
   assetType: 'Renewable' | 'Hydrogen' | 'Demand';
@@ -11,7 +10,7 @@ export interface IAsset extends Document {
   capacity?: string;
   source?: 'Solar' | 'Wind' | 'Hydro';
   industry?: string;
-  userId: mongoose.Schema.Types.ObjectId; // This is the new field
+  userId: mongoose.Schema.Types.ObjectId; 
 }
 
 const AssetSchema: Schema = new Schema({
@@ -39,8 +38,6 @@ const AssetSchema: Schema = new Schema({
   capacity: { type: String },
   source: { type: String, enum: ['Solar', 'Wind', 'Hydro'] },
   industry: { type: String },
-  // --- THIS IS THE CRUCIAL ADDITION ---
-  // We are linking each asset to a specific User document.
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User', // This tells Mongoose the ID belongs to a User

@@ -5,9 +5,6 @@ import dbConnect from '@/lib/mongodb';
 import Asset from '@/models/Asset';
 import { getUserAssets } from '@/lib/data';
 
-// --- THIS IS THE CRUCIAL FIX ---
-// This line tells Next.js to always run this route on the server dynamically
-// and never cache the result.
 export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {

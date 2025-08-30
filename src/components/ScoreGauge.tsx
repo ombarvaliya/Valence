@@ -14,7 +14,6 @@ const ScoreGauge = ({ score, maxScore = 10, colorClass }: ScoreGaugeProps) => {
   return (
     <div className="relative flex items-center justify-center w-40 h-40">
       <svg className="w-full h-full" viewBox="0 0 100 100">
-        {/* Background circle */}
         <circle
           className="text-gray-200"
           strokeWidth="10"
@@ -24,7 +23,6 @@ const ScoreGauge = ({ score, maxScore = 10, colorClass }: ScoreGaugeProps) => {
           cx="50"
           cy="50"
         />
-        {/* Progress arc */}
         <circle
           className={colorClass}
           strokeWidth="10"
