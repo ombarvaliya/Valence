@@ -95,7 +95,7 @@ export default function MapPage() {
         />
       )}
 
-      <div className="flex-grow h-full">
+      <div className="flex-grow h-full z-0">
         <MapLoader
           assets={filteredAssets}
           status={status === 'loading' && allAssets.length === 0 ? 'loading' : 'success'}
