@@ -9,7 +9,6 @@ Valence is a **community-driven platform** designed to connect users with geospa
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
-- [System Flow](#system-flow)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Environment Variables](#environment-variables)
@@ -75,11 +74,6 @@ valence/
 
 ---
 
-## 🔄 System Flow
-Below is a high-level system flow of Valence:
-
-![System Flow](<ADD_LINK_TO_FLOWCHART_IMAGE>)
-
 ---
 
 ## ⚙️ Installation
@@ -128,14 +122,24 @@ RESEND_API_KEY=generate_resend_api_key # To get mail of user from contact us pag
 ---
 
 ## 🖼️ Screenshots
-### Landing Page
-![Landing Page](<ADD_LINK_TO_LANDING_PAGE_SCREENSHOT>)
+- **Landing Page**
+![Landing Page](./images/landingPage.png)
 
-### Authentication Flow
-![Auth Page](<ADD_LINK_TO_AUTH_PAGE_SCREENSHOT>)
 
-### Dashboard with Map
-![Dashboard](<ADD_LINK_TO_DASHBOARD_SCREENSHOT>)
+- **Authentication Page**
+![Auth Page](./images/AuthPage.png)
+
+
+- **Dashboard**
+![Dashboard](./images/Dashboard.png)
+
+
+- **Map View**
+![Map](./images/map.png)
+
+
+- **AI Assistant**
+![AI Assistant](./images/aiAssis.png)
 
 ---
 
