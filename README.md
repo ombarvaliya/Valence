@@ -1,24 +1,12 @@
-# Valence 🌐
+# Valence
 
 Valence is a **community-driven platform** designed to connect users with geospatial data, dashboards, and comparative insights in an intuitive and interactive way. Built with **Next.js, TailwindCSS, Prisma, MongoDB, and NextAuth.js**, the application provides a seamless experience for both users and administrators.
 
 ---
 
-## 📑 Table of Contents
-- [Overview](#overview)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Environment Variables](#environment-variables)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
-
 ---
 
-## 🚀 Overview
+##  Overview
 Valence enables users to:
 - View maps with geospatial filters.
 - Compare different assets and regions.
@@ -27,7 +15,7 @@ Valence enables users to:
 
 ---
 
-## ✨ Features
+##  Features
 - 🔐 **Authentication** with NextAuth.js (Login/Signup)
 - 🗺️ **Interactive Maps** with user-specific data
 - 📊 **Dashboards** showing filters, comparisons, and results
@@ -36,7 +24,7 @@ Valence enables users to:
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 - **Frontend:** Next.js, React, TailwindCSS, shadcn/ui
 - **Backend:** Next.js API routes, Node.js
 - **Database:** MongoDB with Prisma ORM
@@ -101,7 +89,7 @@ valence/
 
 ---
 
-## ▶️ Usage
+## ▶ Usage
 - Visit `http://localhost:3000` to open the landing page.
 - Sign up or log in via the authentication flow.
 - Explore maps and dashboards.
@@ -109,7 +97,7 @@ valence/
 
 ---
 
-## 🔑 Environment Variables
+##  Environment Variables
 
 **Set Up Environment Variables**: Create a file named `.env.local` in the root of the project and add the following, replacing the placeholder values with your actual credentials:
 
@@ -121,7 +109,7 @@ RESEND_API_KEY=generate_resend_api_key # To get mail of user from contact us pag
 ```
 ---
 
-## 🖼️ Screenshots
+##  Screenshots
 - **Landing Page**
 ![Landing Page](./images/landingPage.png)
 
@@ -143,7 +131,7 @@ RESEND_API_KEY=generate_resend_api_key # To get mail of user from contact us pag
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 Contributions are always welcome!
 
 1. Fork the repo
@@ -154,5 +142,5 @@ Contributions are always welcome!
 
 ---
 
-## 📜 License
+##  License
 This project is licensed under the **MIT License**. See [LICENSE](./LICENSE) for details.
